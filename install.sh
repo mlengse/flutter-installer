@@ -26,7 +26,8 @@ FLUTTER_PATH="$INSTALL_DIR/flutter"
 
 mkdir -p "$INSTALL_DIR" # Membuat direktori pengembangan jika belum ada
 
-wget -O "$FLUTTER_ARCHIVE" "$FLUTTER_SDK_URL" || { echo "Gagal mengunduh Flutter SDK."; exit 1; }
+# Menggunakan curl untuk mengunduh Flutter SDK
+curl -L -o "$FLUTTER_ARCHIVE" "$FLUTTER_SDK_URL" || { echo "Gagal mengunduh Flutter SDK."; exit 1; }
 
 echo "Mengekstrak Flutter SDK ke $INSTALL_DIR..."
 tar -xf "$FLUTTER_ARCHIVE" -C "$INSTALL_DIR/" || { echo "Gagal mengekstrak Flutter SDK."; exit 1; }
