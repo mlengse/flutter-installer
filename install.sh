@@ -38,8 +38,13 @@ rm "$FLUTTER_ARCHIVE"
 
 echo "Flutter SDK telah berhasil diinstal di $FLUTTER_PATH"
 
-# 4. Menambahkan Flutter ke PATH
-echo "Menambahkan Flutter ke variabel lingkungan PATH..."
+# PENTING: Atur PATH untuk sesi skrip saat ini agar Flutter dapat ditemukan
+export PATH="$FLUTTER_PATH/bin:$PATH"
+echo "PATH Flutter telah diatur untuk sesi saat ini."
+
+
+# 4. Menambahkan Flutter ke PATH secara permanen untuk sesi interaktif di masa depan
+echo "Menambahkan Flutter ke variabel lingkungan PATH untuk sesi interaktif di masa mendatang..."
 
 # Mendeteksi shell default
 DEFAULT_SHELL=$(basename "$SHELL")
@@ -56,7 +61,7 @@ case "$DEFAULT_SHELL" in
         SHELL_RC_FILE="$HOME/.zshrc"
         ;;
     *)
-        echo "Shell default Anda ($DEFAULT_SHELL) tidak didukung secara otomatis untuk konfigurasi PATH."
+        echo "Shell default Anda ($DEFAULT_SHELL) tidak didukung secara otomatis untuk konfigurasi PATH permanen."
         echo "Anda perlu menambahkan baris berikut ke file konfigurasi shell Anda secara manual:"
         echo "export PATH=\"$FLUTTER_PATH/bin:\$PATH\""
         echo "Silakan merujuk ke dokumentasi shell Anda untuk informasi lebih lanjut."
@@ -65,13 +70,15 @@ esac
 
 if [ -n "$SHELL_RC_FILE" ]; then
     if grep -q "export PATH=\"\$HOME/development/flutter/bin:\$PATH\"" "$SHELL_RC_FILE"; then
-        echo "Flutter PATH sudah ada di $SHELL_RC_FILE. Melewati penambahan."
+        echo "Flutter PATH sudah ada di $SHELL_RC_FILE. Melewati penambahan permanen."
     else
         echo "export PATH=\"$FLUTTER_PATH/bin:\$PATH\"" >> "$SHELL_RC_FILE"
         echo "PATH Flutter telah ditambahkan ke $SHELL_RC_FILE."
-        echo "Harap muat ulang shell Anda (misalnya, dengan menjalankan 'source $SHELL_RC_FILE' atau membuka jendela terminal baru) agar perubahan PATH berlaku."
+        # Pesan ini sekarang lebih fokus pada efek untuk sesi di masa depan
+        echo "Perubahan PATH ini akan berlaku secara permanen untuk sesi terminal interaktif baru."
     fi
 fi
 
 echo "Instalasi Flutter selesai!"
-echo "Untuk memverifikasi instalasi, jalankan 'flutter doctor' di terminal baru."
+echo "Memverifikasi instalasi Flutter sekarang..."
+flutter doctor # Ini akan berjalan dengan sukses karena PATH sudah diatur di atas
