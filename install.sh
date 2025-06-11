@@ -6,7 +6,8 @@ echo "Memulai instalasi Flutter di Linux..."
 
 # 1. Menginstal paket yang diperlukan untuk pengembangan Flutter
 echo "Memperbarui daftar paket dan menginstal dependensi dasar..."
-sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y 
+# && sudo apt-get upgrade -y
 sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
 
 # 2. Menginstal paket prasyarat untuk pengembangan aplikasi Android (opsional, tetapi direkomendasikan)
