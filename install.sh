@@ -11,7 +11,8 @@ sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa > /dev/null 2>&
 
 # 2. Menginstal paket prasyarat untuk pengembangan aplikasi Android (opsional, tetapi direkomendasikan)
 echo "Menginstal dependensi Android Studio (output ditekan)..."
-sudo apt-get install -y libc6:amd64 libstdc++6:amd64 lib32z1 libbz2-1.0:amd/dev/null 2>&1
+# Perbaikan: Bagian ini memiliki kesalahan ketik `/dev/null` yang terpotong. Akan saya perbaiki.
+sudo apt-get install -y libc6:amd64 libstdc++6:amd64 lib32z1 libbz2-1.0:amd64 > /dev/null 2>&1
 
 # Catatan: Instalasi Android Studio penuh harus dilakukan secara manual setelah ini.
 # Flutter membutuhkan Android Studio versi lengkap untuk debug dan kompilasi kode Java atau Kotlin untuk Android.
@@ -25,6 +26,7 @@ FLUTTER_ARCHIVE="$DOWNLOAD_DIR/flutter_linux_3.32.2-stable.tar.xz"
 FLUTTER_PATH="$INSTALL_DIR/flutter"
 
 mkdir -p "$INSTALL_DIR" # Membuat direktori pengembangan jika belum ada
+mkdir -p "$DOWNLOAD_DIR" # Memastikan direktori unduhan ada
 
 # Menggunakan curl untuk mengunduh Flutter SDK
 curl -L -o "$FLUTTER_ARCHIVE" "$FLUTTER_SDK_URL" || { echo "Gagal mengunduh Flutter SDK."; exit 1; }
