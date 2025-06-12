@@ -6,13 +6,13 @@ echo "Memulai instalasi Flutter di Linux..."
 
 # 1. Menginstal paket yang diperlukan untuk pengembangan Flutter
 echo "Memperbarui daftar paket dan menginstal dependensi dasar..."
-sudo apt-get update -y 
+# sudo apt-get update -y 
 # && sudo apt-get upgrade -y
 sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
 
 # 2. Menginstal paket prasyarat untuk pengembangan aplikasi Android (opsional, tetapi direkomendasikan)
-echo "Menginstal dependensi Android Studio..."
-sudo apt-get install -y libc6:amd64 libstdc++6:amd64 lib32z1 libbz2-1.0:amd64
+# echo "Menginstal dependensi Android Studio..."
+# sudo apt-get install -y libc6:amd64 libstdc++6:amd64 lib32z1 libbz2-1.0:amd64
 
 # Catatan: Instalasi Android Studio penuh harus dilakukan secara manual setelah ini.
 # Flutter membutuhkan Android Studio versi lengkap untuk debug dan kompilasi kode Java atau Kotlin untuk Android.
